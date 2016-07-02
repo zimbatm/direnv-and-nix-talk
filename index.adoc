@@ -1,0 +1,43 @@
+= direnv and nix
+:backend: deckjs
+:menu:
+:navigation:
+:status:
+
+== The plan
+
+1. present direnv
+2. talk about the nix integration
+3. workshop!
+
+== direnv install
+
+----
+$ nix-env -i direnv
+
+$ echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+----
+
+== direnv demo
+
+...
+
+== direnv security
+
+== the ~/.direnvrc
+
+== BREAK
+
+== nix and direnv
+
+== nix-shell approach
+
+== the profile approach
+
+== DONE
+
+Thanks for listening!
+
+Time to get the laptops out and hack away
+
+
