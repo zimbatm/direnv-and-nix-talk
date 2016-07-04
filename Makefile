@@ -3,5 +3,5 @@
 all: index.html
 
 index.html: index.adoc
-	asciidoctor -T ./asciidoctor-deck.js/templates/haml -o $@ $<
+	asciidoctor -r asciidoctor-diagram -r coderay -T ./asciidoctor-deck.js/templates/haml -o $@ $<
 

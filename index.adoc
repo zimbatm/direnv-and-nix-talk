@@ -1,43 +1,127 @@
 = direnv and nix
 :backend: deckjs
+:source-highlighter: highlightjs
 :menu:
 :navigation:
 :status:
 
 == The plan
 
-1. present direnv
+1. quick direnv intro
 2. talk about the nix integration
 3. workshop!
 
-== direnv install
+http://direnv.net
 
+== direnv: what is it?
+
+direnv is a language-agnostic environment switcher
+
+think RVM, nvm, phpenv, ...
+
+depends only on Bash
+
+== direnv: install
+
+`nix-env -i direnv` or
+`brew install direnv` or `apt-get install direnv` or fetch binaries on http://direnv.net
+
+.and then:
 ----
-$ nix-env -i direnv
-
 $ echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 ----
 
-== direnv demo
+(or equivalent for zsh, fish, tcsh, ...)
+
+== how does it work?
+
+[plantuml, direnv-workflow, svg]
+....
+skinparam backgroundColor transparent
+
+:before each prompt|
+if (.envrc found?) then (yes)
+  if (.envrc allowed?) then (yes)
+    if (.envrc not loaded?) then (yes)
+      if (.envrc has changed?) then (yes)
+        :unload previous environment;
+        :load environment;
+      else (no)
+      endif
+    else (no)
+    endif
+  else (no)
+  endif
+else (no)
+  :unload previous environment;
+endif
+
+:calculate env diff and eval in parent shell;
+
+stop
+....
+
+== loading of the `.envrc`:
+
+1. create bash sub-shell
+2. inject http://direnv.net/#man/direnv-stdlib.1[the stdlib]
+3. source `~/.config/direnv/direnvrc` (or `~/.direnvrc`)
+4. source `.envrc` file
+
+== quick demo
 
 ...
 
-== direnv security
+== the stdlib
 
-== the ~/.direnvrc
+helpers for common patterns
+
+see http://direnv.net/#man/direnv-stdlib.1
+
+== security framework
+
+* all `.envrc` files are checked against the authorization list
+
+* `direnv allow` or `direnv edit` + save to authorize execution
 
 == BREAK
 
 == nix and direnv
 
-== nix-shell approach
+== the nix-shell approach
+
+[source,bash]
+----
+use_nix() {
+  direnv_load nix-shell --show-trace "$@" --run 'direnv dump'
+  if [[ $# = 0 ]]; then
+    watch_file default.nix
+    watch_file shell.nix
+  fi
+}
+----
 
 == the profile approach
+
+[source,bash]
+----
+nix-profile() {
+  local profile=$PWD/.direnv/nix-profile
+  mkdir -p .direnv
+
+  nix-env --show-trace -p "$profile" -iAr "$@"
+
+  load_prefix "$profile"
+}
+----
 
 == DONE
 
 Thanks for listening!
 
 Time to get the laptops out and hack away
+
+http://direnv.net
+
 
 

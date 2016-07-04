@@ -1,6 +1,8 @@
 { pkgs ? import <nixpkgs> { }
 , stdenv ? pkgs.stdenv
 , bundlerEnv ? pkgs.bundlerEnv
+, plantuml ? pkgs.plantuml
+, jre ? pkgs.jre
 }:
 stdenv.mkDerivation rec {
   name = "direnv-and-nix";
@@ -14,7 +16,7 @@ stdenv.mkDerivation rec {
 
   src = ./.;
 
-  buildInputs = [ env ];
+  buildInputs = [ env plantuml jre ];
 
   buildPhase = ''
     make

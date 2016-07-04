@@ -7,6 +7,22 @@
     };
     version = "1.5.4";
   };
+  asciidoctor-diagram = {
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1v91hwwiidqcsn38a0yyxm90flcn5ngglhybah6g2gamnsw2ym9y";
+      type = "gem";
+    };
+    version = "1.5.0";
+  };
+  coderay = {
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "1x6z923iwr1hi04k6kz5a6llrixflz8h5sskl9mhaaxy9jx2x93r";
+      type = "gem";
+    };
+    version = "1.1.1";
+  };
   haml = {
     source = {
       remotes = ["https://rubygems.org"];

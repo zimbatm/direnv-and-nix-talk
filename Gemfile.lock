@@ -2,6 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     asciidoctor (1.5.4)
+    asciidoctor-diagram (1.5.0)
+      asciidoctor (~> 1.5.0)
+    coderay (1.1.1)
     haml (4.0.7)
       tilt
     thread_safe (0.3.5)
@@ -12,6 +15,8 @@ PLATFORMS
 
 DEPENDENCIES
   asciidoctor
+  asciidoctor-diagram
+  coderay
   haml
   thread_safe
   tilt
