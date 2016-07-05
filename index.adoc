@@ -88,6 +88,8 @@ see http://direnv.net/#man/direnv-stdlib.1
 
 == nix and direnv
 
+Adding software dependencies
+
 == the nix-shell approach
 
 [source,bash]
